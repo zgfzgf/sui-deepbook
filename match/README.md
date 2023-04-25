@@ -8,6 +8,7 @@
 参考order源代码，实现大部分功能。deepbook官方提供部署包，没有提供源代码。
 
 **命令如下:**
+
 export Erc20_Package=0x583ed29fb450d341fcb07d2cf79a7901f1b4cfdde246a6bd0a0890828b8190de
 export Apple_Treasury=0xd3805b339d5ab83856acabd4fd9d0f196aff44ede580aab0782baaee56c31eaa
 export Dai_Treasury=0xa27363ef6d50741919217a06cde7f308714b88ec2ff9f132eb93235e418a8cfe
@@ -15,7 +16,7 @@ sui client call --gas-budget 3000000 --package $Erc20_Package --module apple --f
 sui client call --gas-budget 3000000 --package $Erc20_Package --module dai   --function mint --args $Dai_Treasury   100000000000000
 
 export Order_Package=0x6d5688415304e4727d256d9ba9434019600913b14379758ec8edc0013a1449d2
-export Type_Apple=0x583ed29fb450d341fcb07d2cf79a7901f1b4cfdde246a6bd0a0890828b8190de::apple::APPLE
+export Type_Apple=0x583ed29fb450d341fcb07d2cf79a7901f1b4cfdde246a6bd0a0890828b8190de::**apple**::APPLE
 export Type_Dai=0x583ed29fb450d341fcb07d2cf79a7901f1b4cfdde246a6bd0a0890828b8190de::dai::DAI
 export Create_Fee=0x938b7b0d628801efab9f9f53bac10d94f295290a97aaaafe4c1b4ba55b75ecfb
 sui client call --gas-budget 300000000 --package $Order_Package --module order --function create --type-args $Type_Apple $Type_Dai --args 100000000 100000000 $Create_Fee
