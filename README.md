@@ -1,6 +1,7 @@
 # deepbook(match + swap)
 
 **caballeros 研究员 zgf**
+
 **diem(libra)(aptos) 源代码贡献者**
 
 
@@ -367,15 +368,25 @@ fun match_ask<BaseAsset, QuoteAsset>(
 ### 术语
 
 clob (central limit order book) 中央限价订单簿
+
 match 撮合
+
 BaseAsset/QuoteAsset 例子:BTC/USD，BTC是基础资产，USD是报价资产
+
 bid price 买方出价
+
 ask price 卖方出价
+
 market  市价成交
+
 limit  限价成交
+
 maker order 委托单
+
 take order 成交单
+
 tick-size 最小报价单位
+
 lot_size 最小交易单位
 
 ### deepbook代码问题
