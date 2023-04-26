@@ -48,7 +48,6 @@ module match::order {
         let dai = clob::withdraw_quote(pool, amount, account_cap, ctx);
         transfer::public_transfer(dai, tx_context::sender(ctx))
     }
-    
 
     public entry fun place_limit_order<BaseAsset, QuoteAsset>(
         pool: &mut clob::Pool<BaseAsset, QuoteAsset>,
@@ -73,16 +72,6 @@ module match::order {
             ctx);
 
     }
-/*
-    // deepbook code build error!!!
-    public entry fun get_order_status<BaseAsset, QuoteAsset>(
-        pool: &clob::Pool<BaseAsset, QuoteAsset>,
-        order_id: u64,
-        account_cap: &AccountCap
-    ): clob::Order {
-        clob::get_order_status(pool, order_id, account_cap)
-    }
-*/
 
     public entry fun cancel_order<BaseAsset, QuoteAsset>(
         pool: &mut clob::Pool<BaseAsset, QuoteAsset>,
@@ -105,20 +94,6 @@ module match::order {
         account_cap: &AccountCap
     ){
         clob::batch_cancel_order(pool, order_ids, account_cap)
-    }
-
-    public entry fun list_open_orders<BaseAsset, QuoteAsset>(
-        pool: &clob::Pool<BaseAsset, QuoteAsset>,
-        account_cap: &AccountCap
-    ): vector<clob::Order> {
-        clob::list_open_orders(pool, account_cap)
-    }
-
-    public entry fun account_balance<BaseAsset, QuoteAsset>(
-        pool: &clob::Pool<BaseAsset, QuoteAsset>,
-        account_cap: &AccountCap
-    ): (u64, u64, u64, u64) {
-        clob::account_balance(pool, account_cap)
     }
 
     public entry fun place_market_order<BaseAsset, QuoteAsset>(
@@ -179,7 +154,9 @@ module match::order {
         transfer::public_transfer(apple, tx_context::sender(ctx));
         transfer::public_transfer(dai, tx_context::sender(ctx));
     }
-    public entry fun get_level2_book_status_bid_side<BaseAsset, QuoteAsset>(
+
+    // view fun
+    public fun get_level2_book_status_bid_side<BaseAsset, QuoteAsset>(
         pool: &clob::Pool<BaseAsset, QuoteAsset>,
         price_low: u64,
         price_high: u64,
@@ -188,12 +165,36 @@ module match::order {
         clob::get_level2_book_status_bid_side(pool, price_low, price_high, clock)
     }
 
-    public entry fun get_level2_book_status_ask_side<BaseAsset, QuoteAsset>(
+    public fun get_level2_book_status_ask_side<BaseAsset, QuoteAsset>(
         pool: &clob::Pool<BaseAsset, QuoteAsset>,
         price_low: u64,
         price_high: u64,
         clock: &Clock
     ): (vector<u64>, vector<u64>) {
         clob::get_level2_book_status_ask_side(pool, price_low, price_high, clock)
-    }   
+    }
+
+    public fun list_open_orders<BaseAsset, QuoteAsset>(
+        pool: &clob::Pool<BaseAsset, QuoteAsset>,
+        account_cap: &AccountCap
+    ): vector<clob::Order> {
+        clob::list_open_orders(pool, account_cap)
+    }
+
+    public fun account_balance<BaseAsset, QuoteAsset>(
+        pool: &clob::Pool<BaseAsset, QuoteAsset>,
+        account_cap: &AccountCap
+    ): (u64, u64, u64, u64) {
+        clob::account_balance(pool, account_cap)
+    }
+ /*
+    // deepbook code build error!!!
+    public fun get_order_status<BaseAsset, QuoteAsset>(
+        pool: &clob::Pool<BaseAsset, QuoteAsset>,
+        order_id: u64,
+        account_cap: &AccountCap
+    ): clob::Order {
+        clob::get_order_status(pool, order_id, account_cap)
+    }
+*/   
 }
